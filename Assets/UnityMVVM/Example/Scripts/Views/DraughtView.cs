@@ -21,10 +21,6 @@ public class DraughtView : View<DraughtViewModel>
         zeroY = ViewConstants.ZERO_Y;
         zeroZ = ViewConstants.ZERO_Z;
         step = ViewConstants.STEP;
-
-        var vm = GetViewModel();
-
-        transform.position = new Vector3(zeroX + step * vm.X, zeroY - step * vm.Y, zeroZ);
     }
 
     protected override void UpdateState()

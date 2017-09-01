@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-    public GameView gameView;
+    public GameView3D gameView;
 
     GameViewModel gameViewModel;
 
