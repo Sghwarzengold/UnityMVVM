@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-    public GameView3D gameView;
+    public GameView gameView;
+    public GameView3D gameView3d;
 
     GameViewModel gameViewModel;
 
@@ -21,10 +22,6 @@ public class GameController : MonoBehaviour {
         gameViewModel.InitiStartState();
 
         gameView.BindWith(gameViewModel);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        gameView3d.BindWith(gameViewModel);
 	}
 }

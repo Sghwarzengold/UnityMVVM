@@ -19,7 +19,7 @@ public class GameView3D : View<GameViewModel> {
             return;
 
         GetViewModel().Turn(currentDraught.GetViewModel(), x, y);
-
+        currentDraught.SetHighlight(false);
         currentDraught = null;
     }
 
@@ -49,6 +49,11 @@ public class GameView3D : View<GameViewModel> {
     private void Go_Clicked(DraughtView3D sender)
     {
         currentDraught = sender;
+
+        foreach (var dr in draughts)
+        {
+            dr.SetHighlight(dr == sender);
+        }
     }
 
     protected override void UpdateState()

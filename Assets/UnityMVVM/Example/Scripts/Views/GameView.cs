@@ -39,6 +39,11 @@ public class GameView : View<GameViewModel>
     private void Go_Clicked(DraughtView sender)
     {
         currentDraught = sender;
+
+        foreach (var dr in draughts)
+        {
+            dr.SetHighlight(dr == sender);
+        }
     }
 
     protected override void UpdateState()
@@ -74,7 +79,7 @@ public class GameView : View<GameViewModel>
         var tY = Math.Round((pos.y - ViewConstants.ZERO_Y) / ViewConstants.STEP) * -1;
 
         GetViewModel().Turn(currentDraught.GetViewModel(), (int)tX, (int)tY);
-
+        currentDraught.SetHighlight(false);
         currentDraught = null;
     }
 }

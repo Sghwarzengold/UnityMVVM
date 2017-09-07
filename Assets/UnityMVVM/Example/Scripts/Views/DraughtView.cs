@@ -15,8 +15,17 @@ public class DraughtView : View<DraughtViewModel>
 
     public event Action<DraughtView> Clicked;
 
+    [SerializeField]
+    GameObject highlightObject;
+
+    public void SetHighlight(bool on)
+    {
+        highlightObject.SetActive(on);
+    }
+
     protected override void InitState()
     {
+        SetHighlight(false);
         zeroX = ViewConstants.ZERO_X;
         zeroY = ViewConstants.ZERO_Y;
         zeroZ = ViewConstants.ZERO_Z;

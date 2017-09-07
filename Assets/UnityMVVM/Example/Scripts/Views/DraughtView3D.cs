@@ -2,6 +2,7 @@
 using MVVMExample.ViewModels;
 using UnityMvvm;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class DraughtView3D : View<DraughtViewModel>
 {
@@ -9,8 +10,17 @@ public class DraughtView3D : View<DraughtViewModel>
 
     List<Pivot3D> pivots = new List<Pivot3D>();
 
+    [SerializeField]
+    GameObject highlightObject;
+
+    public void SetHighlight(bool on)
+    {
+        highlightObject.SetActive(on);
+    }
+
     protected override void InitState()
     {
+        SetHighlight(false);
         var list = FindObjectsOfType(typeof(Pivot3D));
         foreach (var item in list)
             pivots.Add(item as Pivot3D);
