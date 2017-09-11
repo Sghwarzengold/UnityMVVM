@@ -6,7 +6,7 @@ namespace MVVMExample.Models
 {
     public class GameModel : Model
     {
-        public List<Draught> Blacks = new List<Draught>();
-        public List<Draught> Whites = new List<Draught>();
+        public List<Man> Blacks = new List<Man>();
+        public List<Man> Whites = new List<Man>();
     }
 }

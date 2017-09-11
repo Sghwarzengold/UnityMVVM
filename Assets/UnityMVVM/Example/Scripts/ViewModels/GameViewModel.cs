@@ -65,12 +65,12 @@ namespace MVVMExample.ViewModels
                 var blackRow = (int)(i / 4);
                 var blackColumn = (int)((i * 2) % 8 + (1 - blackRow % 2));
 
-                m_gameModel.Blacks.Add(new Draught { Y = blackRow, X = blackColumn });
+                m_gameModel.Blacks.Add(new Man { Y = blackRow, X = blackColumn });
 
                 var whiteRow = blackRow + 5;
                 var whiteColumn = (int)((i * 2) % 8 + blackRow % 2);
 
-                m_gameModel.Whites.Add(new Draught { Y = whiteRow, X = whiteColumn });
+                m_gameModel.Whites.Add(new Man { Y = whiteRow, X = whiteColumn });
             }
 
             State = GameState.Game;

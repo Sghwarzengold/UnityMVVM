@@ -11,7 +11,7 @@ public class DraughtViewModelTests {
 	[Test]
 	public void InitValuesByModel()
     {
-        var model = new Draught { X = 1, Y = 2 };
+        var model = new Man { X = 1, Y = 2 };
         var viewModel = new DraughtViewModel(model);
 
         Assert.AreEqual(viewModel.X, model.X);
@@ -21,7 +21,7 @@ public class DraughtViewModelTests {
     [Test]
     public void ChangeValuesInModelByChangingInViewModel()
     {
-        var model = new Draught { X = 1, Y = 2 };
+        var model = new Man { X = 1, Y = 2 };
         var viewModel = new DraughtViewModel(model);
         viewModel.X = 3;
         viewModel.Y = 4;

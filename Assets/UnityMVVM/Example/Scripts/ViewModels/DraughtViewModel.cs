@@ -5,9 +5,9 @@ namespace MVVMExample.ViewModels
 {
     public class DraughtViewModel : ViewModel
     {
-        private Draught model;
+        private Man model;
 
-        public DraughtViewModel(Draught model)
+        public DraughtViewModel(Man model)
         {
             this.model = model;
         }

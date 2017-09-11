@@ -12,8 +12,8 @@ public class GameViewModelTests {
     public void GenerateViewModelBasedOnModel()
     {
         var model = new GameModel();
-        model.Blacks.Add(new Draught { X = 0, Y = 1 });
-        model.Whites.Add(new Draught { X = 2, Y = 3 });
+        model.Blacks.Add(new Man { X = 0, Y = 1 });
+        model.Whites.Add(new Man { X = 2, Y = 3 });
 
         var controller = new GameViewModel(model);
 
@@ -110,7 +110,7 @@ public class GameViewModelTests {
     public void DraughtTriesToMoveOutOfDeck(int oX, int oY, int tX, int tY)
     {
         var model = new GameModel();
-        model.Blacks.Add(new Draught { X = oX, Y = oY });
+        model.Blacks.Add(new Man { X = oX, Y = oY });
 
         var controller = new GameViewModel(model);
         var draught = controller.Blacks[0];
@@ -125,8 +125,8 @@ public class GameViewModelTests {
     public void BlackEatWhiteOnTurn()
     {
         var model = new GameModel();
-        model.Blacks.Add(new Draught { X = 1, Y = 0 });
-        model.Whites.Add(new Draught { X = 2, Y = 1 });
+        model.Blacks.Add(new Man { X = 1, Y = 0 });
+        model.Whites.Add(new Man { X = 2, Y = 1 });
 
         var controller = new GameViewModel(model);
         var draught = controller.Blacks[0];
@@ -142,8 +142,8 @@ public class GameViewModelTests {
     public void WhiteEatBlackOnTurn()
     {
         var model = new GameModel();
-        model.Blacks.Add(new Draught { X = 2, Y = 1 });
-        model.Whites.Add(new Draught { X = 3, Y = 2 });
+        model.Blacks.Add(new Man { X = 2, Y = 1 });
+        model.Whites.Add(new Man { X = 3, Y = 2 });
 
         var controller = new GameViewModel(model);
         var draught = controller.Whites[0];
@@ -160,8 +160,8 @@ public class GameViewModelTests {
     public void BlackWins()
     {
         var model = new GameModel();
-        model.Blacks.Add(new Draught { X = 1, Y = 0 });
-        model.Whites.Add(new Draught { X = 2, Y = 1 });
+        model.Blacks.Add(new Man { X = 1, Y = 0 });
+        model.Whites.Add(new Man { X = 2, Y = 1 });
 
         var controller = new GameViewModel(model);
         var draught = controller.Blacks[0];
@@ -175,8 +175,8 @@ public class GameViewModelTests {
     public void WhiteWins()
     {
         var model = new GameModel();
-        model.Blacks.Add(new Draught { X = 2, Y = 1 });
-        model.Whites.Add(new Draught { X = 3, Y = 2 });
+        model.Blacks.Add(new Man { X = 2, Y = 1 });
+        model.Whites.Add(new Man { X = 3, Y = 2 });
 
         var controller = new GameViewModel(model);
         var draught = controller.Whites[0];
@@ -186,42 +186,42 @@ public class GameViewModelTests {
         Assert.AreEqual(GameState.WhiteWins, controller.State);
     }
 
-    private List<Draught> GetOriginalWhitesPostions()
+    private List<Man> GetOriginalWhitesPostions()
     {
-        var res = new List<Draught>();
+        var res = new List<Man>();
 
-        res.Add(new Draught { X = 0, Y = 5 });
-        res.Add(new Draught { X = 2, Y = 5 });
-        res.Add(new Draught { X = 4, Y = 5 });
-        res.Add(new Draught { X = 6, Y = 5 });
-        res.Add(new Draught { X = 1, Y = 6 });
-        res.Add(new Draught { X = 3, Y = 6 });
-        res.Add(new Draught { X = 5, Y = 6 });
-        res.Add(new Draught { X = 7, Y = 6 });
-        res.Add(new Draught { X = 0, Y = 7 });
-        res.Add(new Draught { X = 2, Y = 7 });
-        res.Add(new Draught { X = 4, Y = 7 });
-        res.Add(new Draught { X = 6, Y = 7 });
+        res.Add(new Man { X = 0, Y = 5 });
+        res.Add(new Man { X = 2, Y = 5 });
+        res.Add(new Man { X = 4, Y = 5 });
+        res.Add(new Man { X = 6, Y = 5 });
+        res.Add(new Man { X = 1, Y = 6 });
+        res.Add(new Man { X = 3, Y = 6 });
+        res.Add(new Man { X = 5, Y = 6 });
+        res.Add(new Man { X = 7, Y = 6 });
+        res.Add(new Man { X = 0, Y = 7 });
+        res.Add(new Man { X = 2, Y = 7 });
+        res.Add(new Man { X = 4, Y = 7 });
+        res.Add(new Man { X = 6, Y = 7 });
 
         return res;
     }
 
-    private List<Draught> GetOriginalBlacksPostions()
+    private List<Man> GetOriginalBlacksPostions()
     {
-        var res = new List<Draught>();
+        var res = new List<Man>();
 
-        res.Add(new Draught { X = 1, Y = 0 });
-        res.Add(new Draught { X = 3, Y = 0 });
-        res.Add(new Draught { X = 5, Y = 0 });
-        res.Add(new Draught { X = 7, Y = 0 });
-        res.Add(new Draught { X = 0, Y = 1 });
-        res.Add(new Draught { X = 2, Y = 1 });
-        res.Add(new Draught { X = 4, Y = 1 });
-        res.Add(new Draught { X = 6, Y = 1 });
-        res.Add(new Draught { X = 1, Y = 2 });
-        res.Add(new Draught { X = 3, Y = 2 });
-        res.Add(new Draught { X = 5, Y = 2 });
-        res.Add(new Draught { X = 7, Y = 2 });
+        res.Add(new Man { X = 1, Y = 0 });
+        res.Add(new Man { X = 3, Y = 0 });
+        res.Add(new Man { X = 5, Y = 0 });
+        res.Add(new Man { X = 7, Y = 0 });
+        res.Add(new Man { X = 0, Y = 1 });
+        res.Add(new Man { X = 2, Y = 1 });
+        res.Add(new Man { X = 4, Y = 1 });
+        res.Add(new Man { X = 6, Y = 1 });
+        res.Add(new Man { X = 1, Y = 2 });
+        res.Add(new Man { X = 3, Y = 2 });
+        res.Add(new Man { X = 5, Y = 2 });
+        res.Add(new Man { X = 7, Y = 2 });
 
         return res;
     }

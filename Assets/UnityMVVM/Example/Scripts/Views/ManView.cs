@@ -5,7 +5,7 @@ using UnityMvvm;
 
 using MVVMExample.ViewModels;
 
-public class DraughtView : View<DraughtViewModel>
+public class ManView : View<DraughtViewModel>
 {
     float zeroX;
     float zeroY;
@@ -13,7 +13,7 @@ public class DraughtView : View<DraughtViewModel>
 
     float step;
 
-    public event Action<DraughtView> Clicked;
+    public event Action<ManView> Clicked;
 
     [SerializeField]
     GameObject highlightObject;

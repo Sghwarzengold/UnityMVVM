@@ -8,22 +8,22 @@ using System.Linq;
 
 public class GameView3D : View<GameViewModel> {
 
-    public DraughtView3D BlackDraught;
-    public DraughtView3D WhiteDraught;
+    public ManView3D BlackManPrefab;
+    public ManView3D WhiteManPrefab;
 
-    List<DraughtView3D> draughts = new List<DraughtView3D>();
+    List<ManView3D> men = new List<ManView3D>();
 
     internal void PivotClicked(int x, int y)
     {
-        if (currentDraught == null)
+        if (currentMan == null)
             return;
 
-        GetViewModel().Turn(currentDraught.GetViewModel(), x, y);
-        currentDraught.SetHighlight(false);
-        currentDraught = null;
+        GetViewModel().Turn(currentMan.GetViewModel(), x, y);
+        currentMan.SetHighlight(false);
+        currentMan = null;
     }
 
-    DraughtView3D currentDraught = null;
+    ManView3D currentMan = null;
 
     protected override void InitState()
     {
@@ -31,26 +31,28 @@ public class GameView3D : View<GameViewModel> {
 
         foreach (var item in vm.Blacks)
         {
-            var go = Instantiate(BlackDraught);
+            var go = Instantiate(BlackManPrefab);
             go.BindWith(item);
             go.Clicked += Go_Clicked;
-            draughts.Add(go);
+            go.transform.SetParent(this.transform);
+            men.Add(go);
         }
 
         foreach (var item in vm.Whites)
         {
-            var go = Instantiate(WhiteDraught);
+            var go = Instantiate(WhiteManPrefab);
             go.BindWith(item);
             go.Clicked += Go_Clicked;
-            draughts.Add(go);
+            go.transform.SetParent(this.transform);
+            men.Add(go);
         }
     }
 
-    private void Go_Clicked(DraughtView3D sender)
+    private void Go_Clicked(ManView3D sender)
     {
-        currentDraught = sender;
+        currentMan = sender;
 
-        foreach (var dr in draughts)
+        foreach (var dr in men)
         {
             dr.SetHighlight(dr == sender);
         }
@@ -61,8 +63,8 @@ public class GameView3D : View<GameViewModel> {
         var vm = GetViewModel();
         var allLiveDraughts = vm.Blacks.Concat(vm.Whites).ToList();
 
-        var toDestroy = new List<DraughtView3D>();
-        foreach (var item in draughts)
+        var toDestroy = new List<ManView3D>();
+        foreach (var item in men)
         {
             if (allLiveDraughts.Contains(item.GetViewModel()))
                 continue;
@@ -72,7 +74,7 @@ public class GameView3D : View<GameViewModel> {
 
         foreach (var item in toDestroy)
         {
-            draughts.Remove(item);
+            men.Remove(item);
             item.Clicked -= Go_Clicked;
             Destroy(item.gameObject);
         }

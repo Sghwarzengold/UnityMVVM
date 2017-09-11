@@ -8,12 +8,12 @@ using System.Linq;
 
 public class GameView : View<GameViewModel>
 {
-    public DraughtView BlackDraught;
-    public DraughtView WhiteDraught;
+    public ManView BlackManPrefab;
+    public ManView WhiteManPrefab;
 
-    List<DraughtView> draughts = new List<DraughtView>();
+    List<ManView> men = new List<ManView>();
 
-    DraughtView currentDraught = null;
+    ManView currentMan = null;
 
     protected override void InitState()
     {
@@ -21,26 +21,28 @@ public class GameView : View<GameViewModel>
 
         foreach (var item in vm.Blacks)
         {
-            var go = Instantiate(BlackDraught);
+            var go = Instantiate(BlackManPrefab);
             go.BindWith(item);
             go.Clicked += Go_Clicked;
-            draughts.Add(go);
+            go.transform.SetParent(this.transform);
+            men.Add(go);
         }
 
         foreach (var item in vm.Whites)
         {
-            var go = Instantiate(WhiteDraught);
+            var go = Instantiate(WhiteManPrefab);
             go.BindWith(item);
             go.Clicked += Go_Clicked;
-            draughts.Add(go);
+            go.transform.SetParent(this.transform);
+            men.Add(go);
         }
     }
 
-    private void Go_Clicked(DraughtView sender)
+    private void Go_Clicked(ManView sender)
     {
-        currentDraught = sender;
+        currentMan = sender;
 
-        foreach (var dr in draughts)
+        foreach (var dr in men)
         {
             dr.SetHighlight(dr == sender);
         }
@@ -51,8 +53,8 @@ public class GameView : View<GameViewModel>
         var vm = GetViewModel();
         var allLiveDraughts = vm.Blacks.Concat(vm.Whites).ToList();
 
-        var toDestroy = new List<DraughtView>();
-        foreach (var item in draughts)
+        var toDestroy = new List<ManView>();
+        foreach (var item in men)
         {
             if (allLiveDraughts.Contains(item.GetViewModel()))
                 continue;
@@ -62,7 +64,7 @@ public class GameView : View<GameViewModel>
 
         foreach (var item in toDestroy)
         {
-            draughts.Remove(item);
+            men.Remove(item);
             item.Clicked -= Go_Clicked;
             Destroy(item.gameObject);
         }
@@ -70,7 +72,7 @@ public class GameView : View<GameViewModel>
 
     private void OnMouseDown()
     {
-        if (currentDraught == null)
+        if (currentMan == null)
             return;
 
         var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -78,8 +80,8 @@ public class GameView : View<GameViewModel>
         var tX = Math.Round((pos.x - ViewConstants.ZERO_X) / ViewConstants.STEP);
         var tY = Math.Round((pos.y - ViewConstants.ZERO_Y) / ViewConstants.STEP) * -1;
 
-        GetViewModel().Turn(currentDraught.GetViewModel(), (int)tX, (int)tY);
-        currentDraught.SetHighlight(false);
-        currentDraught = null;
+        GetViewModel().Turn(currentMan.GetViewModel(), (int)tX, (int)tY);
+        currentMan.SetHighlight(false);
+        currentMan = null;
     }
 }

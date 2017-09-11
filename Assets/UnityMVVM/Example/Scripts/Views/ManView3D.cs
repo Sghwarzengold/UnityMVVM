@@ -4,9 +4,9 @@ using UnityMvvm;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DraughtView3D : View<DraughtViewModel>
+public class ManView3D : View<DraughtViewModel>
 {
-    public Action<DraughtView3D> Clicked { get; internal set; }
+    public Action<ManView3D> Clicked { get; internal set; }
 
     List<Pivot3D> pivots = new List<Pivot3D>();
 
