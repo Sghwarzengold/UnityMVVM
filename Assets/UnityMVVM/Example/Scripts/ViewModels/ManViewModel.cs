@@ -3,11 +3,11 @@ using UnityMvvm;
 
 namespace MVVMExample.ViewModels
 {
-    public class DraughtViewModel : ViewModel
+    public class ManViewModel : ViewModel
     {
         private Man model;
 
-        public DraughtViewModel(Man model)
+        public ManViewModel(Man model)
         {
             this.model = model;
         }

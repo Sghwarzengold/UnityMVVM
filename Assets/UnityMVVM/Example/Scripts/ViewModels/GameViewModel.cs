@@ -16,15 +16,15 @@ namespace MVVMExample.ViewModels
 
     public class GameViewModel : ViewModel
     {
-        private const int DRAUGHTS_PER_PLAYER = 12;
+        private const int MEN_PER_PLAYER = 12;
 
         private GameModel m_gameModel;
 
         public GameViewModel(GameModel gameModel)
         {
             m_gameModel = gameModel;
-            Blacks = new List<DraughtViewModel>();
-            Whites = new List<DraughtViewModel>();
+            Blacks = new List<ManViewModel>();
+            Whites = new List<ManViewModel>();
             
             Rebuild();
         }
@@ -32,14 +32,14 @@ namespace MVVMExample.ViewModels
         private void Rebuild()
         {
             foreach (var dr in m_gameModel.Blacks)
-                Blacks.Add(new DraughtViewModel(dr));
+                Blacks.Add(new ManViewModel(dr));
 
             foreach (var dr in m_gameModel.Whites)
-                Whites.Add(new DraughtViewModel(dr));
+                Whites.Add(new ManViewModel(dr));
         }
 
-        public List<DraughtViewModel> Blacks { get; internal set; }
-        public List<DraughtViewModel> Whites { get; internal set; }
+        public List<ManViewModel> Blacks { get; internal set; }
+        public List<ManViewModel> Whites { get; internal set; }
 
         private GameState m_state;
 
@@ -60,7 +60,7 @@ namespace MVVMExample.ViewModels
             m_gameModel.Blacks.Clear();
             m_gameModel.Whites.Clear();
 
-            for (int i = 0; i < DRAUGHTS_PER_PLAYER; i++)
+            for (int i = 0; i < MEN_PER_PLAYER; i++)
             {
                 var blackRow = (int)(i / 4);
                 var blackColumn = (int)((i * 2) % 8 + (1 - blackRow % 2));
@@ -78,7 +78,7 @@ namespace MVVMExample.ViewModels
             Rebuild();
         }
 
-        public void Turn(DraughtViewModel draught, int x, int y)
+        public void Turn(ManViewModel draught, int x, int y)
         {
             if (x < 0 || y < 0 || x > 7 || y > 7)
             {
@@ -121,7 +121,7 @@ namespace MVVMExample.ViewModels
                 State = GameState.WhiteWins;
         }
 
-        private void WhiteTurn(DraughtViewModel draught, int x, int y)
+        private void WhiteTurn(ManViewModel draught, int x, int y)
         {
             if ((x != draught.X - 1 && x != draught.X + 1) ||
                 y != draught.Y - 1)
@@ -134,7 +134,7 @@ namespace MVVMExample.ViewModels
             draught.Y = y;
         }
 
-        private void BlackTurn(DraughtViewModel draught, int x, int y)
+        private void BlackTurn(ManViewModel draught, int x, int y)
         {
 
             if ((x != draught.X - 1 && x != draught.X + 1) ||

@@ -4,7 +4,7 @@ using UnityMvvm;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManView3D : View<DraughtViewModel>
+public class ManView3D : View<ManViewModel>
 {
     public Action<ManView3D> Clicked { get; internal set; }
 

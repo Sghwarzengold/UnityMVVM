@@ -29,7 +29,7 @@ public class GameViewModelTests {
 
 
     [Test]
-    public void CheckDraughtCountAfterStart()
+    public void CheckManCountAfterStart()
     {
         var model = new GameModel();
         var controller = new GameViewModel(model);
@@ -41,7 +41,7 @@ public class GameViewModelTests {
     }
 
     [Test]
-    public void CheckDraughtPositionsAfterStart()
+    public void CheckManPositionsAfterStart()
     {
         var model = new GameModel();
         var controller = new GameViewModel(model);
@@ -107,7 +107,7 @@ public class GameViewModelTests {
     [TestCase(1, 0, -1, 1)]
     [TestCase(3, 7, 2, 8)]
     [TestCase(7, 2, 8, 3)]
-    public void DraughtTriesToMoveOutOfDeck(int oX, int oY, int tX, int tY)
+    public void ManTriesToMoveOutOfDeck(int oX, int oY, int tX, int tY)
     {
         var model = new GameModel();
         model.Blacks.Add(new Man { X = oX, Y = oY });

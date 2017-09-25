@@ -5,7 +5,7 @@ using UnityMvvm;
 
 using MVVMExample.ViewModels;
 
-public class ManView : View<DraughtViewModel>
+public class ManView : View<ManViewModel>
 {
     float zeroX;
     float zeroY;
